@@ -9,7 +9,7 @@ public class ServerFrame extends JFrame {
 
     private final static Logger logger = (Logger) LogManager.getRootLogger();
     private JLabel chatLabel = new JLabel("Chat");
-    private JLabel participaLabel = new JLabel("Participa");
+    private JLabel participaLabel = new JLabel("Participantes");
     private JPanel chatPanel = new JPanel();
     private JPanel participaPanel = new JPanel();
 
@@ -34,11 +34,16 @@ public class ServerFrame extends JFrame {
         participaPanel.setBackground(Color.DARK_GRAY);
         participaPanel.setBounds(550,60,300,500);
 
-        chatLabel.setBounds(200,0,100,100);
+        chatLabel.setBounds(250,0,100,100);
+        chatLabel.setFont(new Font("Italic", 4, 24));
+
+        participaLabel.setBounds(630,0,140,100);
+        participaLabel.setFont(new Font("Italic", 4, 24));
 
         add(chatPanel, null);
         add(participaPanel, null);
         add(chatLabel, null);
+        add(participaLabel, null);
 
 
 
