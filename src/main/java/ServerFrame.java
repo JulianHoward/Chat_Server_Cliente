@@ -3,41 +3,47 @@ import org.apache.logging.log4j.core.Logger;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class ServerFrame extends JFrame {
+public class ServerFrame extends JFrame implements ActionListener {
 
 
     private final static Logger logger = (Logger) LogManager.getRootLogger();
+    private ImagenObjeto modelo;
     private JLabel chatLabel = new JLabel("Chat");
     private JLabel participaLabel = new JLabel("Participantes");
     private JPanel chatPanel = new JPanel();
     private JPanel participaPanel = new JPanel();
+    private JPanel loginPanel = new JPanel();
+    private JButton next = new JButton("Siguiente");
+    private JButton back = new JButton("Anterior");
 
-
-    /*private ServerPanelChat serverPanelChat;
-    private ServerPanelParticipa serverPanelParticipa;*/
 
     public ServerFrame() {
         setTitle("Chat");
-        setSize(900,900);
+        setSize(900, 900);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(null);
-        init();
+        next.addActionListener(this);
+        back.addActionListener(this);
+        initLog();
     }
 
-    private void init() {
+
+    private void initServer() {
 
         chatPanel.setBackground(Color.DARK_GRAY);
-        chatPanel.setBounds(30,60,500,500);
+        chatPanel.setBounds(30, 60, 500, 500);
 
         participaPanel.setBackground(Color.DARK_GRAY);
-        participaPanel.setBounds(550,60,300,500);
+        participaPanel.setBounds(550, 60, 300, 500);
 
-        chatLabel.setBounds(250,0,100,100);
+        chatLabel.setBounds(250, 0, 100, 100);
         chatLabel.setFont(new Font("Italic", 4, 24));
 
-        participaLabel.setBounds(630,0,140,100);
+        participaLabel.setBounds(630, 0, 140, 100);
         participaLabel.setFont(new Font("Italic", 4, 24));
 
         add(chatPanel, null);
@@ -45,18 +51,22 @@ public class ServerFrame extends JFrame {
         add(chatLabel, null);
         add(participaLabel, null);
 
+    }
 
+    public void initLog() {
+        modelo = new ImagenObjeto(900, 900);
+        panelImagen fondo = new panelImagen(modelo);
+        modelo.addObserver(fondo);
 
-
-        /*serverPanelChat = new ServerPanelChat();
         this.getContentPane().setLayout(new BorderLayout());
-        this.getContentPane().add(serverPanelChat, BorderLayout.WEST);
-        serverPanelChat.setLocation(300,500);
-        logger.debug("Pone panel chat al west");
+        this.getContentPane().add(fondo, BorderLayout.CENTER);
 
-        serverPanelParticipa = new ServerPanelParticipa();
-        this.getContentPane().add(serverPanelParticipa, BorderLayout.EAST);
-        serverPanelParticipa.setLocation(100,200);
-        logger.debug("pone panel participa al east");*/
+        Login log = new Login(modelo);
+        log.hacer();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }
