@@ -5,11 +5,10 @@ import java.beans.PropertyChangeListener;
 
 public class panelImagen extends JPanel implements PropertyChangeListener {
 
-
     private ImagenObjeto imagen;
 
     public panelImagen(ImagenObjeto img) {
-
+        setLayout(null);
         imagen = img;
     }
 

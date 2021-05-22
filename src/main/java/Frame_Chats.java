@@ -3,36 +3,26 @@ import org.apache.logging.log4j.core.Logger;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class ServerFrame extends JFrame implements ActionListener {
-
+public class Frame_Chats extends JFrame {
 
     private final static Logger logger = (Logger) LogManager.getRootLogger();
-    private ImagenObjeto modelo;
     private JLabel chatLabel = new JLabel("Chat");
     private JLabel participaLabel = new JLabel("Participantes");
     private JPanel chatPanel = new JPanel();
     private JPanel participaPanel = new JPanel();
-    private JPanel loginPanel = new JPanel();
-    private JButton next = new JButton("Siguiente");
-    private JButton back = new JButton("Anterior");
 
-
-    public ServerFrame() {
-        setTitle("Chat");
+    public Frame_Chats(){
+        setTitle("Chats");
         setSize(900, 900);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(null);
-        next.addActionListener(this);
-        back.addActionListener(this);
-        initLog();
+        initServerChat();
+        setVisible(true);
     }
 
-
-    private void initServer() {
+    private void initServerChat() {
 
         chatPanel.setBackground(Color.DARK_GRAY);
         chatPanel.setBounds(30, 60, 500, 500);
@@ -50,23 +40,6 @@ public class ServerFrame extends JFrame implements ActionListener {
         add(participaPanel, null);
         add(chatLabel, null);
         add(participaLabel, null);
-
-    }
-
-    public void initLog() {
-        modelo = new ImagenObjeto(900, 900);
-        panelImagen fondo = new panelImagen(modelo);
-        modelo.addObserver(fondo);
-
-        this.getContentPane().setLayout(new BorderLayout());
-        this.getContentPane().add(fondo, BorderLayout.CENTER);
-
-        Login log = new Login(modelo);
-        log.hacer();
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
 
     }
 }
